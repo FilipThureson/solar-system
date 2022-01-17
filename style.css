@@ -3,3 +3,15 @@ canvas{
   top: 0;
   left: 0;
 }
+
+div{
+  position: fixed;
+  left: 10vh;
+  top: 10vh;
+  z-index: 10;
+  color: white;
+}
+
+div *{
+  font-size: 2rem;
+}
