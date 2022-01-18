@@ -4,14 +4,50 @@ canvas{
   left: 0;
 }
 
-div{
+.inputDiv{
   position: fixed;
-  left: 10vh;
-  top: 10vh;
+  left: 2.5vh;
+  top: 2.5vh;
   z-index: 10;
   color: white;
+  min-height: 200px;
+  width: 500px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+}
+.inputDiv button{
+  font-size: 2rem;
+}
+.inputDiv input{
+  font-size: 2rem;
+}
+.inputDiv span{
+  margin-top: 20px;
+  font-size: 1.5rem;
 }
 
-div *{
+.planetsInfomation{
+  position: fixed;
+  right: 2.5vh;
+  top: 2.5vh;
+  z-index: 10;
+  color: white;
+  min-height: 200px;
+  max-height: 500px;
+  overflow-y: scroll;
+  width: 500px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+}
+.planetsInfomation span{
   font-size: 2rem;
+}
+.listObj{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 1px solid grey;
+}
+.rmvBtn{
+  cursor: pointer;
 }

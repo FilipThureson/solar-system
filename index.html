@@ -7,13 +7,29 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div>
-      <button id="add">+</button>
-      <span id="speed">1</span>
-      <button id="remove">-</button>
+    <div class="inputDiv">
+      <input type="number" id="nOP" value="1"> <!-- Number of planets-->
+      <button id="sim">Simulate!</button>
+      <!--
+      <span>
+        Planets:
+        <div id = "planetsList">
+
+        </div>
+      </span>
+    -->
+    </div>
+    <div class="planetsInfomation">
+      <span>
+        Planets:
+        <div id = "planetsList">
+
+        </div>
+      </span>
     </div>
 
     <canvas id="bg"></canvas>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
