@@ -7,7 +7,7 @@ import { Vector3 } from 'three';
 
 
 const scene = new THREE.Scene();
-let G = 1;
+let G = 5;
 let numOfPlanets = 10;
 var dir = new THREE.Vector3();
 
@@ -36,7 +36,7 @@ var planets = [];
 scene.add(sun.body);
 
 for(let i = 0; i < numOfPlanets; i++){
-  planets.push( new Body((Math.random()*40)+10, earthTexture, {x: 0, y: 0, z: 0}, {x: 0, y: 0, z: (Math.random()*1000) + 100}, (Math.random()*10)+10) );
+  planets.push( new Body((Math.random()*40)+10, earthTexture, {x: 0, y: 0, z: 0}, {x: 0, y: Math.random()*50, z: (Math.random()*1000) + 100}, (Math.random()*10)+10) );
 }
 
 for(let i = 0; i < planets.length; i++){
@@ -69,6 +69,8 @@ function animate(){
     sun.attract(planets[i]);
   }
 
+  console.log(planets[0].v);
+
   renderer.render(scene, camera);
 }
 
@@ -84,13 +86,13 @@ function Body(_mass, _color, _vel, _pos, _r){
   if(_pos.z != 0){
     this.vel.x = Math.sqrt((G*1000)/_pos.z);
   }
-
+/*
   let orbitG = new THREE.TorusGeometry(_pos.z, 1, 16, 650)
   let orbitM = new THREE.MeshStandardMaterial({color: 0xffffff});
   let orbit = new THREE.Mesh( orbitG, orbitM);
   scene.add(orbit);
   orbit.rotateX(300);
-
+*/
   let geometry = new THREE.SphereGeometry(_r);
   let material = new THREE.MeshStandardMaterial({map: _color});
 
@@ -112,11 +114,11 @@ function Body(_mass, _color, _vel, _pos, _r){
   }
 
   this.test = (f)=>{
-
-    //console.log(f);
     
     this.vel.x -= f.x / this.mass;
     this.vel.z -= f.z / this.mass;
+    this.vel.y -= f.y / this.mass;
+
   }
 
   this.attract = (child)=>{
@@ -134,8 +136,11 @@ function Body(_mass, _color, _vel, _pos, _r){
 
 
     let vinkel = Math.atan2(child.body.position.z , child.body.position.x);
+
+    let vinkelY = Math.asin((child.body.position.y/r.length()));
+
     
-    let f = new Vector3(dir.length()*Math.cos(vinkel), 0, (dir.length()*Math.sin(vinkel)));
+    let f = new Vector3(dir.length()*Math.cos(vinkel), dir.length()*Math.sin(vinkelY) , (dir.length()*Math.sin(vinkel)));
     child.test(f);
   }
 
